@@ -9,3 +9,11 @@ sudo apt-get install openssh-server
 ```cmd
 sudo service ssh status
 ```
+## install npm on ubuntu
+```cmd
+sudo apt-get install nodejs npm
+```
+## install Vue-CLI on ubuntu
+```cmd
+sudo npm install -g @vue/cli
+```
