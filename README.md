@@ -106,6 +106,17 @@ each person can read
 cd ~/projects/laravel
 sudo php artisan serve --host 192.168.0.228 --port 8081
 ```
+## 安裝Vue3
+```cmd
+npm install --save vue@next && npm install --save-dev vue-loader@next
+```
+## 安裝Laravel freeze
+```cmd
+composer require laravel/breeze
+php artisan breeze:install
+```
+npm install && npm run dev
+
 # Docker env (failed) 
 ## install Docker on ubuntu / check status
 ```cmd
