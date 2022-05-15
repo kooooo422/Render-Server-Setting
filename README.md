@@ -23,6 +23,90 @@ sudo npm install -g @vue/cli
 ```
 
 # Backend env
+## apt 建置 PHP/Laravel
+## 安裝 Apache / 檢查安裝版本
+```cmd
+sudo apt install apache2
+sudo apache2 -v
+```
+check with server ip
+## 安裝 MySQL
+```cmd
+sudo apt install mysql-server
+sudo mysql --version
+```
+## 安裝 PHP
+```cmd
+# 新增 ppa 來源
+sudo apt-add-repository ppa:ondrej/php
+sudo apt update
+
+# 安裝 PHP 及相關擴充
+sudo apt install php7.2 php7.2-common php7.2-cli php7.2-curl php7.2-gd php7.2-json php7.2-dev php7.2-pgsql php7.2-sqlite3 php7.2-gd php7.2-curl php7.2-memcached php7.2-imap php7.2-mysql php7.2-mbstring php7.2-xml php7.2-zip php7.2-bcmath php7.2-soap php7.2-intl php7.2-readline
+
+# 安裝 Apache 的 PHP 模組
+sudo apt install libapache2-mod-php7.2
+```
+## 下載/安裝 Composer
+```cmd
+php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+php -r "if (hash_file('sha384', 'composer-setup.php') === '55ce33d7678c5a611085589f1f3ddf8b3c52d662cd01d4ba75c0ee0459970c2200a51f492d557530c71c15d8dba01eae') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+php composer-setup.php
+php -r "unlink('composer-setup.php');"
+```
+把 composer.phar 變成全域指令
+```cmd
+sudo mv composer.phar /usr/local/bin/composer
+```
+## 安裝 Laravel
+建立新 Laravel 專案
+```cmd
+mkdir ~/Projects
+cd ~/Projects
+composer create-project laravel/laravel --prefer-dist
+```
+Laravel 在運行的時候，會將應用程式的 cache 及 log 寫入檔案，因此把資料夾權限開大
+```cmd
+chmod -R 777 storage
+chmod -R 777 bootstrap/cache
+```
+## 建立/開啟虛擬站台
+
+```cmd
+sudo nano /etc/apache2/site-available/laravel.local.conf
+# add
+  <VirtualHost laravel.local:80>
+      DocumentRoot "/home/shengyou/Projects/laravel/public"
+      ServerAdmin laravel.local
+
+      <Directory "/home/shengyou/Projects/laravel">
+          Options All
+          AllowOverride All
+          Require all granted
+      </Directory>
+  </VirtualHost>
+```
+完成後要在 Apache 裡啟動這個站台，成功啟動後要重新載入 Apache 設定檔
+```cmd
+# 開啟站台
+sudo a2ensite laravel.local
+
+# 重新載入 Apache 設定檔
+sudo systemctl reload apache2
+```
+## 設定 hosts
+```cmd
+sudo nano /etc/hosts
+# add 
+  127.0.0.1 laravel.local
+```
+each person can read
+
+```cmd
+cd ~/projects/laravel
+sudo php artisan serve --host 192.168.0.228 --port 8081
+```
+# Docker env (failed) 
 ## install Docker on ubuntu / check status
 ```cmd
 sudo apt-get install docker.io
