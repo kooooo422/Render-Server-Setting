@@ -116,7 +116,15 @@ composer require laravel/breeze
 php artisan breeze:install
 ```
 npm install && npm run dev
-
+# blender in Ubuntu
+install with snap
+```cmd
+sudo snap install blender --classic
+```
+try it
+```cmd
+blender
+```
 # Docker env (failed) 
 ## install Docker on ubuntu / check status
 ```cmd
