@@ -11,7 +11,10 @@ sudo apt-get install openssh-server
 ```cmd
 sudo service ssh status
 ```
-
+## install net-tools
+```cmd
+sudo apt-get install net-tools
+```
 # Frontend env
 ## install npm on ubuntu
 ```cmd
