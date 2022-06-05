@@ -16,9 +16,15 @@ sudo service ssh status
 sudo apt-get install net-tools
 ```
 # Frontend env
+## install curl
+```cmd
+sudo apt install curl  # version 7.68.0-1ubuntu2.11
+```
 ## install npm on ubuntu
 ```cmd
-sudo apt-get install nodejs npm
+curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+sudo apt-get install -y nodejs
+sudo npm install -g npm@latest
 ```
 ## install Vue-CLI on ubuntu
 ```cmd
